@@ -1,0 +1,353 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>&#1055;&#1086;&#1085;&#1103;&#1090;&#1085;&#1086; &#1087;&#1088;&#1086; &#1076;&#1077;&#1083;&#1077;&#1075;&#1072;&#1090;&#1099; </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="&#1055;&#1086;&#1085;&#1103;&#1090;&#1085;&#1086; &#1087;&#1088;&#1086; &#1076;&#1077;&#1083;&#1077;&#1075;&#1072;&#1090;&#1099; ">
+    <meta name="generator" content="docfx 2.58.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="понятно-про-делегаты">Понятно про делегаты</h1>
+
+<blockquote>
+<p>И интересные примеры их использования</p>
+</blockquote>
+<h3 id="что-такое-делегат-и-зачем-он-нужен">Что такое делегат и зачем он нужен?</h3>
+<p>Делегатом можно назвать объект, который указывает на один или несколько методов.</p>
+<p>Классическим примером использования делегатов является метод сортировки массива, который принимает функцию для определения наибольшего элемента в качестве аргумента и каждый раз, когда ей нужно определить какой из двух элементов больше — она вызывает эту функцию и получает результат, на основании которого меняет элементы местами, либо же оставляет все как есть.</p>
+<blockquote>
+<p>Делегаты часто применяются при работе с LINQ(встроенном языке запросов) либо же при создании пользовательского интерфейса(события при нажатии на кнопку, изменении текста).</p>
+</blockquote>
+<h3 id="создание-простейшего-делегата">Создание простейшего делегата</h3>
+<p>Давайте создадим простейший делегат, присвоим ему метод и попытаемся его вызвать.<br>
+Для начала нам нужно создать <strong>прототип делегата</strong>(можно назвать его классом делегата):</p>
+<pre><code class="lang-csharp">delegate void SimpleDelegate();
+</code></pre>
+<p>Объявление прототипа делегата очень похоже на объявление функции, за исключением ключевого слова <code>delegate</code>. После чего указывается какой тип будит возвращать наш делегат(<code>void</code>), а также указывается имя делегата(<code>SimpleDelegate</code>) и пустые скобки<code>()</code>, в которых должны указывать аргументы делегата. Тип делегата обязательно должен быть объявлен за пределами метода.<br>
+Мы создали тип делегата, который не будет ни принимать, ни возвращать значение.</p>
+<p>Далее мы должны создать <strong>экземпляр делегате</strong> — объект, у которого будет такой же тип, как и у его прототипа (это очень похоже на класс и экземпляры этого класса):</p>
+<pre><code class="lang-csharp">SimpleDelegate firstDelegate;
+</code></pre>
+<p>Тут все также как и с переменными: сначала указывается тип <code>SimpleDelegate</code>, далее указывается имя объекта <code>firstDelegate</code>.</p>
+<p>Теперь мы должны присвоить ему значение, которое в данном случае должно быть названием метода:</p>
+<pre><code class="lang-csharp">firstDelegate = HelloWorld;
+</code></pre>
+<p>С левой стороны от оператора присвоения указывается имя делегата, а с правой стороны название метода без круглых скобок.</p>
+<p>Вызов делегата идентичен вызову метода:</p>
+<pre><code class="lang-csharp">firstDelegate();
+</code></pre>
+<p>Либо же с помощью метода <code>ИмяДелегата.Invoke()</code>:</p>
+<pre><code class="lang-csharp">firstDelegate.Invoke();
+</code></pre>
+<p>Стоит отметить что предпочтительно использовать метод <code>Invoke()</code>, так как при первом способе вызов делегата легко перепутать с вызовом метода.</p>
+<h3 id="возвращаемые-и-передаваемые-значения">Возвращаемые и передаваемые значения</h3>
+<p>Делегату также можно присваивать методы, которые возвращают значение или принимают какие либо аргументы. Для этого изменим тип делегата следующим образом:</p>
+<pre><code class="lang-csharp">delegate int MathOperation(int a, int b);
+</code></pre>
+<p>Теперь создадим метод, который принимает два аргумента тип int и возвращает тоже int:</p>
+<pre><code class="lang-csharp">static int Sum(int a, int b)  
+{  
+ return a + b;  
+}
+</code></pre>
+<p>Данный метод возвращает сумму двух элементов.</p>
+<p>Создадим объект делегата <code>MathOperation</code> и присвоим ему метод Sum:</p>
+<pre><code class="lang-csharp">MathOperation firstDelegate;  
+firstDelegate = Sum;
+</code></pre>
+<p>При вызове данного делегата мы указываем значения его аргументов и принимаем вызываемое значение:</p>
+<pre><code class="lang-csharp">int sum = firstDelegate.Invoke(10, 20); //sum == 30
+</code></pre>
+<p>В результате мы получили значение, которое вернул метод <code>Sum</code>.</p>
+<p>Делегату <code>MathOperation</code> можно присвоить метода с идентичным набором аргументов и возвращаемых значений: int Метод(int Аргумент1, int Аргумент2)</p>
+<p>Попробуем присвоить этому делегату метод <code>Square</code>, который принимает только один аргумент:</p>
+<pre><code class="lang-csharp">static int Square(int a)  
+{  
+ return a * a;  
+}
+//ошибка
+firstDelegate = Square;
+</code></pre>
+<p>В результате получим ошибку, т.к. список принимаемых аргументов у метода и делегата не соответствуют.</p>
+<blockquote>
+<p>Так же если делегат принимает аргумент <code>out int num1</code> или <code>ref int num2</code>, то и у присваемого ему метода должными быть модификаторы <code>ref</code> и <code>out</code>.</p>
+</blockquote>
+<h3 id="присвоение-нескольких-методов">Присвоение нескольких методов</h3>
+<p>В делегат можно записать сразу несколько методов, главное чтобы они соответствовали делегату.<br>
+Добавление делегатов используется с помощью оператора <code>+</code>:</p>
+<pre><code>Делегат = Делегат + Метод;
+</code></pre>
+<p>Либо же в сокращенном варианте:</p>
+<pre><code>Делегат += Метод;
+</code></pre>
+<p>Таким образом вместе с делегатом вызываются и все его методы:</p>
+<pre><code class="lang-csharp">delegate void Printer();
+static void Main()  
+{  
+ Printer printer;  
+ printer = PrintConsole;  
+ printer += PrintFile;  
+ printer.Invoke();  
+}
+static void PrintConsole()  
+{  
+ Console.WriteLine((&quot;Hello World!&quot;));  
+}
+static void PrintFile()  
+{  
+ File.Create(&quot;myfile.txt&quot;);  
+ File.WriteAllText(&quot;myfile.txt&quot;,&quot;Hello World!&quot;);  
+}
+</code></pre>
+<p>Если же в делегат было записано несколько методов возвращающих значение, то при его вызове мы получим только результат работы последнего записанного в делегат метода:</p>
+<pre><code class="lang-csharp">delegate int MathOperation(int a, int b);
+static void Main()  
+{  
+ MathOperation printer;  
+ printer = Sum;  
+ printer += Mul;  
+ Console.WriteLine(printer.Invoke(3,3));  
+}
+static int Sum(int num1, int num2)  
+{  
+ return num1 + num2;  
+}
+static int Mul(int num1, int num2)  
+{  
+ return num1 * num2;  
+}
+</code></pre>
+<p>Уже записанные в делегат методы можно удалить оператором <code>-</code> по аналогии с добавлением метода:</p>
+<pre><code>Делегат -= Метод;
+</code></pre>
+<p>Если же мы попытаемся удалить метод, которого в делегате нет, то ничего не произойдет.</p>
+<blockquote>
+<p>Важно помнить что при добавлении и удалении метода из делегата происходит создании нового объекта делегата с обновленным списком методов.</p>
+</blockquote>
+<h3 id="использование-делегата-в-качестве-аргумента-метода">Использование делегата в качестве аргумента метода</h3>
+<p>Для передачи делегата в метод мы должны указать его тип при объявлении метода:</p>
+<pre><code class="lang-csharp">//определяем тип делегата
+delegate int MathOperation(int a, int b);
+static int Calculate(MathOperation operation) {}
+</code></pre>
+<p>При вызове этого метода мы можем передать делегат указанного типа:</p>
+<pre><code class="lang-csharp">MathOperation operation = Sum;  
+Calculate(operation);
+</code></pre>
+<p>Или же просто указать метод, который соответствует делегату:</p>
+<pre><code class="lang-csharp">Calculate(Sum);
+</code></pre>
+<p>Небольшой пример использования делегатов:</p>
+<pre><code class="lang-csharp">delegate int MathOperation(int a, int b);
+static void Main()
+{
+    int[] arr = {1, 2, 3, 4, 5, 6};
+    Console.WriteLine(AggregateArray(arr, Sum));
+    Console.WriteLine(AggregateArray(arr, Mul));
+}
+static int Sum(int num1, int num2)
+{
+    return num1 + num2;
+}
+static int Mul(int num1, int num2)
+{
+    return num1 * num2;
+}
+static int AggregateArray(int[] array, MathOperation operation)
+{
+    int count = 0;
+    for (int i = 0; i &lt; array.Length - 1; i++)
+    {
+        count = operation.Invoke(array[i], array[i + 1]);
+    }
+    return count;
+}
+</code></pre>
+<p>Метод <code>AggregateArray</code> складывает все элементы массива <code>array</code> заданным в делегате <code>MathOperation</code> образом. В этом примере мы находим сумму всех элементов с помощью <code>Sum</code> и <code>Mul</code> для нахождения произведения.</p>
+<h3 id="инкапсуляция-делегата-внутри-класса">Инкапсуляция делегата внутри класса</h3>
+<p>Объекты делегатов можно устанавливать в качестве полей классов.</p>
+<p>Небольшой пример с классом <code>Player</code>, который имеет некое здоровье <code>Health</code> и может получить урон <code>Damage</code>.<br>
+При получении урона и смерти игрок будет писать какое-либо сообщение, но как именно его писать мы выбираем сами с помощью делегата:</p>
+<pre><code class="lang-csharp">class Player
+    {
+        private int health;
+        public delegate void Printer(string text);
+        private Printer messagePrinter;
+        public Printer MessagePrinter
+        {
+            set
+            {
+                messagePrinter = value;
+            }
+        }
+        public Player(int health, Printer printer)
+        {
+            this.health = health;
+            this.messagePrinter = printer;
+        }
+        public void TakeDamage(int damage)
+        {
+            health -= damage;
+            if(health &lt;= 0)
+            {
+                messagePrinter.Invoke($&quot;Игрок получил {damage} урона мертв!&quot;);
+            }
+            else
+            {
+                messagePrinter.Invoke(&quot;Игрок остался в живых!&quot;);
+            }
+        }
+    }
+</code></pre>
+<blockquote>
+<p>Для того чтобы никто кроме самого игрока не мог вызвать <code>messagePrinter</code> мы определили свойство <code>MessagePrinter</code> с доступом только для записи.</p>
+</blockquote>
+<p>Теперь определим несколько методов для вывода сообщения: обычный текст и текст розового цвета:</p>
+<pre><code class="lang-csharp">static void Print(string text)
+{
+    Console.WriteLine(text);
+}
+static void PrintWithColor(string text)
+{
+    Console.ForegroundColor = ConsoleColor.Magenta;
+    Console.WriteLine(text);
+    Console.ResetColor();
+}
+</code></pre>
+<blockquote>
+<p>Мы можем выводить текст не только в консоль. Можно определить метод для выводы текста в файл или даже по сети.</p>
+</blockquote>
+<p>Теперь создаем игрока, наносим урон, меняем метод отрисовки сообщений и снова наносим урон:</p>
+<pre><code class="lang-csharp">Player firstPlayer = new Player(10, Print);  
+firstPlayer.TakeDamage(5);  
+firstPlayer.MessagePrinter = PrintWithColor;  
+firstPlayer.TakeDamage(5);
+</code></pre>
+<p><img src="https://sun9-64.userapi.com/impg/WJYJYfKjU0BAmzF5po1IYDTaMqfuaNPr6FVlSw/lIZHhLvC7v8.jpg?size=490x71&amp;quality=96&amp;sign=2e2bc7604526652c8859f4e5ba6effc8&amp;type=album" alt="Результат работы"></p>
+<blockquote>
+<p>На первый взгляд не очень впечатляет, но такая сложная система позволяет нам создать крайне гибкую систему с доступом к работе класса <code>Player</code> из вне.</p>
+</blockquote>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+          
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+              
+              <span>Generated by <strong>DocFX</strong></span>
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../styles/toggle-theme.js"></script>
+      </footer>    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

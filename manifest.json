@@ -5,14 +5,14 @@
   "files": [
     {
       "type": "Conceptual",
-      "source_relative_path": "articles/intro.md",
+      "source_relative_path": "articles/delegate.md",
       "output": {
         ".html": {
-          "relative_path": "articles/intro.html",
-          "hash": "XMlPdwYNL/lpYtuoPn/C/ts9tB7eaNq5v/n+fLBnSZU="
+          "relative_path": "articles/delegate.html",
+          "hash": "HYbYmyL6+fjnlLhkgi2BEd7IfbMybLN8ikOjlNmzZsY="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -24,7 +24,7 @@
           "hash": "CV7N+Ks2fWCeJGJKFXSPnm46+j/Sm64J1Mf9h4FvXik="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -33,7 +33,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/toc.html",
-          "hash": "nIwO8wVlLRxQj3gULERllqbzCMrFXMH3b5rvWMc45XQ="
+          "hash": "hoo7E1NvdCUGCFpIDFmrJgxV3LrGP4qGKx4M7MEcerw="
         }
       },
       "is_incremental": false,
@@ -45,7 +45,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "Rna1rNs9tMOyS9afQvfEInoyb+xoRTKkY3BAEqYpPlg="
+          "hash": "GQdjKGq38q9DDgsNipvTV/qGlQWtMvP/xe0BCLWDSU4="
         }
       },
       "is_incremental": true,
@@ -57,7 +57,7 @@
       "output": {
         ".html": {
           "relative_path": "toc.html",
-          "hash": "zJlBSxasxFbHfkp9e4GxBeeC7JdjgL/QBcY+rg9ZEvw="
+          "hash": "Zdl6qNg2ECvLCZOsMwRodaSL4eyDretO0iXCHFVsgh4="
         }
       },
       "is_incremental": false,
