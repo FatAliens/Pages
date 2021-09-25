@@ -1,0 +1,298 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>&#1055;&#1086;&#1085;&#1103;&#1090;&#1085;&#1086; &#1087;&#1088;&#1086; null </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="&#1055;&#1086;&#1085;&#1103;&#1090;&#1085;&#1086; &#1087;&#1088;&#1086; null ">
+    <meta name="generator" content="docfx 2.58.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="понятно-про-null">Понятно про null</h1>
+
+<hr>
+<h2 id="что-такое-null">Что такое null?</h2>
+<p>Начнем с того что типы в языке С# делятся на <em><strong>ссылочные</strong></em> и типы <strong>значений</strong>.<br>
+Ссылочные типы <em>не хранят</em> в себе само <em>значение</em>, а лишь <em>указывают на него,</em> в отличие от типов значений. Если им не присвоить значение, то они будут указывать на отсутствие значения — <em><strong>null</strong></em>.</p>
+<h2 id="для-чего-может-понадобиться-null">Для чего может понадобиться null?</h2>
+<p>Указание на отсутствие значения может помочь при работе с базами данных, построении клиент серверных-приложений, так как некоторые значения там могут быть необязательны к заполнению. Допустим у нас имеется логин и пароль пользователя, которые обязательны к заполнению, но также есть и электронная почта, которую пользователь может просто не захотеть вводить. В данном случае единственным методов хранить такое значение является указание его отсутствия — использовать NULL.</p>
+<h2 id="почему-мы-не-может-использовать-null-c-типом-значения">Почему мы не может использовать null c типом значения?</h2>
+<p>Как говорилось выше — null указывает на отсутствие значения, но такой подход неприменим для типов значений, т.к. они не указывают на значение, а хранят его, а при отсутствии значения — принимают значение по умолчанию в соответствие со своим типом (например для int — 0, bool — false, char — '\u0000').</p>
+<h2 id="отсутствие-значения-и-ссылочные-типы">Отсутствие значения и ссылочные типы</h2>
+<p>Существую три основный способа сообщить об отсутствии значения в типах значений(не используя Nullable типы):</p>
+<ul>
+<li>Использование «*магических значений».<br>
+*Данный метод предусматривает поиск уникальных значений, которые были бы альтернативой его отсутствию. Для каждого типа нужно указывать собственное магическое значение — как правило это 0, минимальное или максимальное значение, допустимое типом:</li>
+</ul>
+<pre><code class="lang-csharp">DateTime date = DateTime.MinValue; //Присваиваем переменной минимальное значение для DateTime,
+//которое будет эквивалентно пустому значению
+
+if (date == DateTime.MinValue) //Проверяем переменную, на соответствие нашему &quot;магическому значению&quot;  
+{  
+ Console.WriteLine(&quot;Auch!&quot;); //Оу, похоже у нас пустое значение  
+}
+</code></pre>
+<ul>
+<li>Использование <em>отдельного флага</em> типа bool, хранящего в себе информацию пуста ли переменная(false) или имеет значение(true):</li>
+</ul>
+<pre><code class="lang-csharp">DateTime date; //создание самой переменной  
+bool isValue = false; //создаем флаг - пуста ли переменная data
+
+if (!isValue) //Проверяем, пуста ли переменная  
+{  
+ Console.WriteLine(&quot;Auch!&quot;); //Оу, похоже у нас пустое значение  
+}
+</code></pre>
+<ul>
+<li>Создание отдельной ссылочной <em>обертки</em>, допускающей значение null:</li>
+</ul>
+<pre><code class="lang-csharp">class Time //класс, являющийся оберткой для значения  
+{  
+ public DateTime value { get; set; } //само значение  
+}
+---
+Time time = null; //создание обьекта класса Time
+
+if (time == null) //Проверка на null  
+{  
+ Console.WriteLine(&quot;Auch!&quot;); //Оу, похоже у нас пустое значение  
+}
+</code></pre>
+<p>Все! Мы решили поставленную задачу и полностью преисполнились в своем познании, но если тщательно обдумать все вышеперечисленные способы, то можно понять, что все они навязывают ненужные контракты программистам и требуют дополнительно документирования, а в некоторых случаях и вовсе могут привести к <em>ошибкам.</em></p>
+<p>Далее мы рассмотрим, как решить эту проблему столь же <em>элегантно,</em> как это присуще языку C#.</p>
+<h2 id="некоторые-полезные-операторы-при-работе-с-null">Некоторые полезные операторы при работе с null</h2>
+<ul>
+<li>Оператор <em><strong>условного null</strong></em></li>
+</ul>
+<p>Для начала объявим класс, имеющий лишь одну функцию:</p>
+<pre><code class="lang-csharp">class Hello  
+{  
+ public string text { get; set; }  
+ public void SayHello()  
+ {  
+ Console.WriteLine(&quot;Hello {0}&quot;, text);  
+ }  
+}
+</code></pre>
+<p>Теперь создадим «пустой» экземпляр класса User:</p>
+<pre><code class="lang-csharp">Hello newHello = null;
+</code></pre>
+<p>Попытаемся вызвать функцию через объект, но чтобы избежать ошибки, проверим объект на null:</p>
+<pre><code class="lang-csharp">if (newHello != null)  
+{  
+ newHello.SayHello();
+}
+</code></pre>
+<p>Чтобы избежать постоянных проверок на null мы можем заменить этот код всего одной строкой:</p>
+<pre><code class="lang-csharp">newHello?.SayHello();
+</code></pre>
+<p>Оператор <code>.?</code> сначала проверяет на null, а лишь потом вызывает функцию.</p>
+<p>Такой же синтаксис можно использовать для безопасного получения значения полей/свойств у объекта:</p>
+<pre><code class="lang-csharp">Console.WriteLine(&quot;text = [{0}]&quot;, newHello?.text);
+</code></pre>
+<p>Что же мы увидим в консоли? Пустое значение, т.к. значение по факту отсутствует.</p>
+<ul>
+<li>Оператор <strong>объединения с null</strong></li>
+</ul>
+<p>Бывают ситуации, когда в случае равенства переменной null нужно вывести значение по умолчанию:</p>
+<pre><code class="lang-csharp">Object number = null;
+
+if (number == null)  
+{  
+ Console.WriteLine(42);  
+}  
+else  
+{  
+ Console.WriteLine(number);  
+}
+</code></pre>
+<p>Однако данный синтаксис слишком велик, особенное если у нас 10 таких переменных.<br>
+Попробуем заменить это нагромождение кода тернарным оператором:</p>
+<pre><code class="lang-csharp">Console.WriteLine(number == null ? 42 : number);
+</code></pre>
+<p>Стало значительно лучше, но с помощью оператора объединения с null можно это сократить код еще больше:</p>
+<pre><code class="lang-csharp">Console.WriteLine(number ?? 42);
+</code></pre>
+<p>Данный оператор имеет следующий синтаксис: <em>переменная</em> <code>??</code> <em>значение по умолчанию</em>.</p>
+<h2 id="nullable">Nullable</h2>
+<p>Начнем с того, что Nullable является обобщенной структурой, находящейся в пространстве имен System. Он выглядит следующим образом:</p>
+<pre><code class="lang-csharp">public partial struct Nullable&lt;T&gt; where T : struct
+</code></pre>
+<p>Исходя из объявления(<code>where T : struct</code>) можно понять что он принимает универсальные параметры только типа значения.</p>
+<p>Создадим переменную Nullable с параметром int:</p>
+<pre><code class="lang-csharp">Nullable&lt;int&gt; number = 42;
+</code></pre>
+<p>Однако существует более лаконичный синтаксис:</p>
+<pre><code class="lang-csharp">int? number = 42;
+</code></pre>
+<p>Попробуем вывести это значение с помощью свойства <code>Value</code>, которое хранит значение объекта:</p>
+<pre><code class="lang-csharp">Console.WriteLine(number.Value); //Получаем 42
+</code></pre>
+<p>Как видим, <code>number</code> ведет себя аналогично типам значений, однако теперь мы можем присвоить ему null:</p>
+<pre><code class="lang-csharp">int? number = null;  
+if (number == null)  
+{  
+ Console.WriteLine(&quot;Auch!&quot;); //похоже у нас null  
+}
+</code></pre>
+<p>Такой же результат можно получить с помощью свойства <code>hasValue</code>, которое возвращает <code>false</code>, если переменная не хранит значение и <code>false</code>, если хранит:</p>
+<pre><code class="lang-csharp">if (!number.HasValue)  
+{  
+ Console.WriteLine(&quot;Auch!&quot;); //у нас все еще null  
+}
+</code></pre>
+<p>Также тип Nallable определяет метод <code>GetValueOrDefault</code>, который аналогичен оператору объединения с null:</p>
+<pre><code class="lang-csharp">Console.WriteLine(number.GetValueOrDefault());
+//получим 0, т.к. это значение по умолчанию для типа int
+
+Console.WriteLine(number.GetValueOrDefault(42));
+//получим 42, т.к. мы указали его как значение по умолчанию
+
+Console.WriteLine(number ?? 42);
+//тоже самое, только с оператором &quot;объединения с null&quot;
+</code></pre>
+<h2 id="преобразования-с-nullable">Преобразования с Nullable</h2>
+<p>Начнем с явного преобразования из Nullable в реальный тип:</p>
+<pre><code class="lang-csharp">int? a = 1;  
+int b = (int)a;  
+Console.WriteLine(b); //1
+</code></pre>
+<p>Все будет работать. Однако попробовав совершить тоже самое действие с null мы получим ошибку:</p>
+<pre><code class="lang-csharp">int? a = null;  
+int b = (int)a;  
+Console.WriteLine(b); //Ошибка
+</code></pre>
+<p>Исправить это можно функцией <code>GetValueOrDefault</code>(или оператором объединения с null):</p>
+<pre><code class="lang-csharp">int? a = null;  
+int b = a.GetValueOrDefault(); //0  
+int c = a ?? 0; //0
+</code></pre>
+<p>С преобразование из реального типа в null все гораздо проще:</p>
+<pre><code class="lang-csharp">int a = 0;  
+int? c = a; //0
+</code></pre>
+<h2 id="выводы">Выводы</h2>
+<p>Говоря о преимуществах null, нельзя забывать о том, что он с легкость может привести к ошибкам, связанным с попыткой использования пустого объекта (всеми любимая ошибка NullFeferenceException). Такая ситуация может возникнуть в результате использования вашего кодом другим программистом, особенно если вы не уведомите его о том, что такое знание допустимо в данной ситуации.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+          
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+              
+              <span>Generated by <strong>DocFX</strong></span>
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../styles/toggle-theme.js"></script>
+      </footer>    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

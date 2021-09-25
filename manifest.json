@@ -5,23 +5,11 @@
   "files": [
     {
       "type": "Conceptual",
-      "source_relative_path": "api/index.md",
+      "source_relative_path": "articles/intro.md",
       "output": {
         ".html": {
-          "relative_path": "api/index.html",
-          "hash": "b8PxEIUSUaSyViEPEu11YFYuKhc7ccuBD1MLSdVqLo8="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Toc",
-      "source_relative_path": "api/toc.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/toc.html",
-          "hash": "53cDPdjyKTmYSaPMwcMYYJO/bYpeY21eGi/JWyVQBqE="
+          "relative_path": "articles/intro.html",
+          "hash": "XMlPdwYNL/lpYtuoPn/C/ts9tB7eaNq5v/n+fLBnSZU="
         }
       },
       "is_incremental": false,
@@ -29,11 +17,11 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "articles/intro.md",
+      "source_relative_path": "articles/null.md",
       "output": {
         ".html": {
-          "relative_path": "articles/intro.html",
-          "hash": "UqBhcuwcV3ik3S7oy2oy6fKIcAUWJbMm2yFd2AloP2w="
+          "relative_path": "articles/null.html",
+          "hash": "CV7N+Ks2fWCeJGJKFXSPnm46+j/Sm64J1Mf9h4FvXik="
         }
       },
       "is_incremental": false,
@@ -45,7 +33,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/toc.html",
-          "hash": "BlPxk5mtl2kgfcZUgkEguqiSAR/EUyUTT4EdebwkQvs="
+          "hash": "nIwO8wVlLRxQj3gULERllqbzCMrFXMH3b5rvWMc45XQ="
         }
       },
       "is_incremental": false,
@@ -57,10 +45,10 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "qmH9tQdG4SXyntzI6NTqdOHd34yZrpTBy/5H2WSgAF0="
+          "hash": "Rna1rNs9tMOyS9afQvfEInoyb+xoRTKkY3BAEqYpPlg="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -69,7 +57,7 @@
       "output": {
         ".html": {
           "relative_path": "toc.html",
-          "hash": "WSuRrYiGwKKMbtdG9z8W9fXmLoCyTnGg9AxbPKLXm2Y="
+          "hash": "zJlBSxasxFbHfkp9e4GxBeeC7JdjgL/QBcY+rg9ZEvw="
         }
       },
       "is_incremental": false,
@@ -79,19 +67,17 @@
   "incremental_info": [
     {
       "status": {
-        "can_incremental": false,
-        "details": "Cannot build incrementally because last build info is missing.",
+        "can_incremental": true,
         "incrementalPhase": "build",
         "total_file_count": 0,
-        "skipped_file_count": 0,
-        "full_build_reason_code": "NoAvailableBuildCache"
+        "skipped_file_count": 0
       },
       "processors": {
         "ConceptualDocumentProcessor": {
-          "can_incremental": false,
+          "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 3,
-          "skipped_file_count": 0
+          "skipped_file_count": 3
         },
         "TocDocumentProcessor": {
           "can_incremental": false,
@@ -104,8 +90,8 @@
     },
     {
       "status": {
-        "can_incremental": false,
-        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
+        "can_incremental": true,
+        "details": "Can support incremental post processing.",
         "incrementalPhase": "postProcessing",
         "total_file_count": 0,
         "skipped_file_count": 0
